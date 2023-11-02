@@ -42,6 +42,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 @TeleOp
 
+
+ /**
+ * This code lets you control the robot with the d pad
+ * 
+ *
+ */
  public class TeleOp_Driver_Control extends LinearOpMode {
     private DcMotor leftF;
     private DcMotor leftR;
