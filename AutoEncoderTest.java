@@ -17,7 +17,7 @@ public class AutoEncoderTest extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() { //void opmode bracket
+    public void runOpMode() {
         
     bigMotor = hardwareMap.get(DcMotor.class, "bigMotor");
     littleMotor = hardwareMap.get(DcMotor.class, "littleMotor");
