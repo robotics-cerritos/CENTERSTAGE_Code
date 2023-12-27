@@ -1,3 +1,3 @@
-﻿# CENTERSTAGE_Code
-1. hello world
+﻿# Official CENTERSTAGE℠ code for FTC 15305
+ 1. 
 
