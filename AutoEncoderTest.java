@@ -11,22 +11,26 @@ import com.qualcomm.robotcore.hardware.CRServo;
 public class AutoEncoderTest extends LinearOpMode {
 
     private DcMotor bigMotor;
-    private int encoderRotation;
+    private DcMotor littleMotor;
+    private int bigEncoderRotation;
+    private int littleEncoderRotation;
 
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() { //void opmode bracket
         
     bigMotor = hardwareMap.get(DcMotor.class, "bigMotor");
+    littleMotor = hardwareMap.get(DcMotor.class, "littleMotor");
     bigMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    
-    encoderRotation = 0;
+    littleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+    bigEncoderRotation = 0;
+    littleEncoderRotation = 0;
     
     telemetry.addData("Status", "Initialized");
     telemetry.update();
         
     waitForStart();
-
 
     /* goBILDA 5203-series Yellow Jacket 312 RPM motors have a total of 537.7
     ticks per rotation. This value varies from motor to motor, so you have to
@@ -34,15 +38,15 @@ public class AutoEncoderTest extends LinearOpMode {
     so round how you see fit. For example, a full rotation from a 312 RPM motor
     would be around 538 ticks. */
 
-    drive(269, 0.1);
-    drive(-269, 0.1);
+    drive(269, 10, 0.1);
+    drive(-269, -10, 0.1);
     sleep(1000);
-    drive(538, 0.1);
+    drive(538, -538, 0.1);
 
     /* GOAL: half-rotation clockwise
-		  half-rotation counter-clockwise
-		  wait for 1 second
-		  Full-rotation clockwise
+	     half-rotation counter-clockwise
+	     wait for 1 second
+	     full-rotation clockwise
     */
 		  
 
@@ -50,13 +54,17 @@ public class AutoEncoderTest extends LinearOpMode {
     
     private void drive(int encoderPosition, double speed) {
         
-        encoderRotation += encoderPosition;
+        bigEncoderRotation += bigEncoderPosition;
+        littleEncoderRotation += littleEncoderPosition;
         
-        bigMotor.setTargetPosition(encoderRotation);
+        bigMotor.setTargetPosition(bigEncoderRotation);
+        littleMotor.setTargetPosition(littleEncoderRotation);
         
         bigMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        littleMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         
         bigMotor.setPower(speed);
+        littleMotor.setPower(speed);
         
         while(opModeIsActive() && bigMotor.isBusy()) {
             
