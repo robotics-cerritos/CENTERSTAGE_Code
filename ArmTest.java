@@ -31,32 +31,31 @@ import com.qualcomm.robotcore.util.ElapsedTime;
     public void runOpMode() {//public void bracket
         
         //hardware mapping each electronic
-        leftF = hardwareMap.get(DcMotor.class, "leftF"); 
+    leftF = hardwareMap.get(DcMotor.class, "leftF"); 
     leftR = hardwareMap.get(DcMotor.class, "leftR");
     rightF = hardwareMap.get(DcMotor.class, "rightF");
     rightR = hardwareMap.get(DcMotor.class, "rightR");
         
         
         //arm bar motors
-        leftArmMotor = hardwareMap.get(DcMotor.class, "leftArmMotor");
-        rightArmMotor = hardwareMap.get(DcMotor.class, "rightArmMotor");
+    leftArmMotor = hardwareMap.get(DcMotor.class, "leftArmMotor");
+    rightArmMotor = hardwareMap.get(DcMotor.class, "rightArmMotor");
         
-        leftArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    leftArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    rightArmMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //servos
-        clawGrab = hardwareMap.get(Servo.class, "clawGrab");
-        clawRotate = hardwareMap.get(Servo.class, "clawRotate");
-                launcherS = hardwareMap.get(Servo.class, "launcherS");
-
-        
-        
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-        
-        clawRotate.setPosition(0);
+    //servos
+    clawGrab = hardwareMap.get(Servo.class, "clawGrab");
+    clawRotate = hardwareMap.get(Servo.class, "clawRotate");
+    launcherS = hardwareMap.get(Servo.class, "launcherS");
 
         
+        
+    telemetry.addData("Status", "Initialized");
+    telemetry.update();
+        
+    clawRotate.setPosition(0);
+     
         //wait for the game to start (when driver presses PLAY)
         waitForStart();
         
